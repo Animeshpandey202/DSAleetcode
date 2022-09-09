@@ -25,8 +25,8 @@ public:
             if(c>=0 && c<=9){
                  ans=ans*10 +c*sign;
             
-                if(sign==1 && ans>INT_MAX)return INT_MAX;
-                if(sign==-1 && ans<INT_MIN)return INT_MIN;
+                if(ans>INT_MAX)return INT_MAX;
+                if(ans<INT_MIN)return INT_MIN;
                 
             }
             else{
