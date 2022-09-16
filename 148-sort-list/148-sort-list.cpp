@@ -13,14 +13,14 @@ class Solution {
         
         ListNode *slow=head;
         ListNode *fast=head;
-        
-        while(fast->next!=NULL && fast->next->next!=NULL){
-            
+        ListNode *prev=NULL;
+        while(fast!=NULL && fast->next!=NULL){
+            prev=slow;
             slow=slow->next;
             fast=fast->next->next;
             
         }
-        return slow;
+        return prev;
         
     }
     
