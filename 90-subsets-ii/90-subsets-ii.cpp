@@ -1,24 +1,29 @@
 class Solution {
+    void f(int ind,vector<int>&ds,vector<vector<int>>&ans,vector<int>& arr,int n){
+        //for nth call try to make subset of size n
+        ans.push_back(ds);
+        
+        // if(ind==n)return;
+        
+        for(int i=ind;i<n;i++){
+            
+            if(i>ind && arr[i]==arr[i-1])continue;
+            
+            ds.push_back(arr[i]);
+            f(i+1,ds,ans,arr,n);
+            ds.pop_back();               
+        }   
+    }
 public:
-   void fun(vector < int > & nums, int index, vector < int > &ds, set < vector < int >> & res) {
-      if (index == nums.size()) {
-        res.insert(ds);
-        return;
-      }
-      ds.push_back(nums[index]);
-      fun(nums, index + 1, ds, res);
-      ds.pop_back();
-      fun(nums, index + 1, ds, res);
+    vector<vector<int>> subsetsWithDup(vector<int>& arr) {
+        
+        sort(arr.begin(),arr.end());
+        vector<vector<int>>ans;
+        vector<int>ds;
+        int n=arr.size();
+        f(0,ds,ans,arr,n);
+        return ans;
+        
+        
     }
-  vector < vector < int >> subsetsWithDup(vector < int > & nums) {
-    sort(nums.begin(),nums.end());
-    vector < vector < int >> ans;
-    set < vector < int >> res;
-    vector < int > ds;
-    fun(nums, 0, ds, res);
-    for (auto it = res.begin(); it != res.end(); it++) {
-      ans.push_back( * it);
-    }
-    return ans;
-  }
 };
