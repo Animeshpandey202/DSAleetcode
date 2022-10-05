@@ -1,8 +1,7 @@
 class Solution {
 public:
-   void fun(vector < int > & nums, int index, vector < int > ds, set < vector < int >> & res) {
+   void fun(vector < int > & nums, int index, vector < int > &ds, set < vector < int >> & res) {
       if (index == nums.size()) {
-        sort(ds.begin(), ds.end());
         res.insert(ds);
         return;
       }
@@ -12,6 +11,7 @@ public:
       fun(nums, index + 1, ds, res);
     }
   vector < vector < int >> subsetsWithDup(vector < int > & nums) {
+    sort(nums.begin(),nums.end());
     vector < vector < int >> ans;
     set < vector < int >> res;
     vector < int > ds;
