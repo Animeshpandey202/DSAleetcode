@@ -1,38 +1,24 @@
 class Solution {
-    
-    void f(int i,vector<int>&ds,vector<vector<int>>&ans,vector<int>&arr,int k,int n){
+public:
+    void f(vector<int>& ds, int ind, int k, int n,vector<vector<int>>& ans) {
         
-       
-        if(n<0 || ds.size()>k)return;
-        if(ds.size()==k && n==0){
+        if(n == 0 && ds.size() == k) {
             ans.push_back(ds);
             return;
         }
-         if(i==arr.size())return;
+        if(n < 0 || ds.size() > k) return;
         
-        //take
-        ds.push_back(arr[i]);
-        f(i+1,ds,ans,arr,k,n-arr[i]);
-        
-        ds.pop_back();
-        
-        f(i+1,ds,ans,arr,k,n);
-        
-        
-        
+        for(int i=ind; i<=9; ++i) {
+            ds.push_back(i);
+            f(ds, i+1, k, n-i,ans);
+            ds.pop_back();
+        }
     }
     
-    
-    
-    
-public:
     vector<vector<int>> combinationSum3(int k, int n) {
-     
-        vector<int>arr={1,2,3,4,5,6,7,8,9};
         vector<vector<int>>ans;
-        vector<int>ds;
-        f(0,ds,ans,arr,k,n);
+        vector<int> ds;
+        f(ds, 1, k, n,ans);
         return ans;
-        
     }
 };
