@@ -3,7 +3,7 @@ class Solution {
         //for nth call try to make subset of size n
         ans.push_back(ds);
         
-        // if(ind==n)return;
+        if(ind==n)return;
         
         for(int i=ind;i<n;i++){
             
