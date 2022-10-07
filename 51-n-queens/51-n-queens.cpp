@@ -1,67 +1,62 @@
 class Solution {
-    public:
-    bool isSafe1(int row, int col, vector < string > board, int n) {
-      int i = row;
-      int j = col;
-
-      while (i >= 0 && j >= 0) {
-        if (board[i][j] == 'Q')
-          return false;
-        i--;
-        j--;
-      }
-      
-      i = row;  
-      j = col;
-     
-      while (j >= 0) {
-        if (board[i][j] == 'Q')
-          return false;
-        j--;
-      }
-
-      i = row;
-      j = col;
-      while (i < n && j >= 0) {
-        if (board[i][j] == 'Q')
-          return false;
-        i++;
-        j--;
-      }
-      return true;
-    }
     
-    void solve(int col, vector < string > & board, vector < vector < string >> & ans, int n) {
-      if (col == n) {
-        ans.push_back(board);
-        return;
-      }
-      for (int row = 0; row < n; row++) {
-        if (isSafe1(row, col, board, n)) {
-          board[row][col] = 'Q';
-          solve(col + 1, board, ans, n);
-          board[row][col] = '.';
-        }
-      }
-    }
+ void f(int col,vector<string>&board,vector<vector<string>>&ans,vector<int>&leftrow,vector<int>&updig,vector<int>&downdig,int n){
+     
+     if(col==n){
+         ans.push_back(board);
+         return;
+     }
+     
+     //insert Q in col
+     
+     for(int row=0;row<n;row++){
+         //safe to insert
+         if(leftrow[row]==0 && updig[n-1+col-row]==0 && downdig[row+col]==0){
+             //inset Q
+             board[row][col]='Q';
+             
+             //update diagonal arrays
+             leftrow[row]=1;
+             updig[n-1+col-row]=1;
+             downdig[row+col]=1;
+             
+             //recursive call
+             f(col+1,board,ans,leftrow,updig,downdig,n);
+             
+             //backtrack
+             board[row][col]='.';
+             
+             //update diagonal arrays to previos state
+             leftrow[row]=0;
+             updig[n-1+col-row]=0;
+             downdig[row+col]=0;
+             
+         }
+ 
+         
+     }
+
+     
+ }
+    
     
 public:
     vector<vector<string>> solveNQueens(int n) {
-     vector < vector < string >> ans;
-      vector < string > board;
-      string s(n, '.');
-      for (int i = 0; i < n; i++) {
-        board.push_back(s);
-      }
-    for(auto it:board){
-        cout<<it<<endl;
-    }
         
-      solve(0, board, ans, n);
-      return ans;
+        string s(n,'.');
+        vector<string>board;
+        for(int i=0;i<n;i++){
+            board.push_back(s);
+        }
+        //initializing leftrow ,up diagonal and low diagnal
+        
+        vector<int>leftrow(n,0),updig(2*n-1,0),downdig(2*n-1,0);
+        
+        
+        vector<vector<string>>ans;
+        f(0,board,ans,leftrow,updig,downdig,n);
+        return ans;       
+        
         
     }
 };
-
-
-
