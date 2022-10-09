@@ -1,40 +1,39 @@
 class Solution {
-  void f(map<int,int>&mp,vector<int>&ds,vector<vector<int>>&ans,vector<int>&nums,int n)  {
-
-    if(ds.size()==n){
-        ans.push_back(ds);
-        return;
-    }
-    
-    
-    //try all possible combos
-    
-    for(auto it:nums){
+    void f(int ind,vector<int>&nums,vector<vector<int>>&ans,int n){
         
-        if(mp[it]==0){
-            ds.push_back(it);
-            mp[it]=1;
-            f(mp,ds,ans,nums,n);
-            
-            ds.pop_back();
-            mp[it]=0;
+        if(ind==n){
+            ans.push_back(nums);
         }
+        
+        // 4 5 6
+        for(int i=ind;i<n;i++){
+            // 5 4 6
+            swap(nums[ind],nums[i]);
+            
+            f(ind+1,nums,ans,n);
+            
+            swap(nums[ind],nums[i]);
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
     }
     
-  }   
-    
-   
+
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         int n=nums.size();
-        map<int,int>mp;
-        for(auto it:nums){
-            mp[it]=0;
-        }
-        
-        vector<int>ds;
         vector<vector<int>>ans;
-        f(mp,ds,ans,nums,n);
+        f(0,nums,ans,n);
         return ans;
+        
+        
+        
     }
 };
