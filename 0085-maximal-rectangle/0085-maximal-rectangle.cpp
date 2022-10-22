@@ -54,7 +54,7 @@ public:
         int n=matrix.size();
         if(n==0) return 0;
         int m=matrix[0].size(), result=0;
-        vector<int> curRow(m, 0);
+        vector<int> curRow(m);
         int maxi=0;
         
         for(int i=0; i<n; i++){
