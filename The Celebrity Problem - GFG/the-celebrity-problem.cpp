@@ -7,52 +7,36 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
+
 class Solution 
 {
     public:
     //Function to find if there is a celebrity in the party or not.
     int celebrity(vector<vector<int> >& M, int n) 
     {
-        stack<int>st;
+        int celebrity=-1;
         for(int i=0;i<n;i++){
-            st.push(i);
-        }
-        
-        while(st.size()>=2){
-            int i=st.top();
-            st.pop();
-            int j=st.top();
-            st.pop();
-            
-            if(M[i][j]==1){
-                //i knows j..i is not celebrity and j can be
-                st.push(j);
-            }
-            else{
-                //i doesnot know j ...i can be celebrity and j cant
-                st.push(i);
-                
-                
-            }
-            
-            
-        }
-        
-        int potn=st.top();
-        
-        for(int i=0;i<n;i++){
-            
-            if(i!=potn){
-                if(M[potn][i]==1 || M[i][potn]==0){
-                    return -1;
+            bool knows_anyone=false;
+            bool everyone_knows=true;
+            for(int j=0;j<n;j++){
+                if(M[i][j]==1){
+                    knows_anyone=true;
+                    break;
                 }
-                
-                
-            }
             
+                if(M[j][i]==0 && i!=j){
+                    everyone_knows=false;
+                    break;
+                }
+            }
+         if(!knows_anyone && everyone_knows){
+            return i;
             
         }
-        return potn;
+        
+        }
+    return celebrity;
+        
     }
 };
 
