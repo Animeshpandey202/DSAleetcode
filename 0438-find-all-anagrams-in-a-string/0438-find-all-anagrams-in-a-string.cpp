@@ -8,24 +8,25 @@ public:
         if(p.size() > s.size())
             return ans;
         
-        int left = 0, right = 0;
+        int left= 0, right = 0;
         while(right < p.size()){
             phash[p[right] - 'a']++;
             shash[s[right] - 'a']++;
             right++;
         }
-        if(phash==shash)ans.push_back(0);
+        if(phash==shash)ans.push_back(left);
 
         for(;right < s.size();right++){
             //remove char out of window
-            char ch=s[right-k]-'a';
+            char ch=s[left]-'a';
             shash[ch]--;
+            left++;
             
             //add current char to window
             shash[s[right]-'a']++;
             
             if(shash==phash){
-                ans.push_back(right-k+1);
+                ans.push_back(left);
             }
            
         }
