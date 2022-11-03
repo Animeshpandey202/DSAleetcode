@@ -1,34 +1,33 @@
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(string str) {
         
-        // time=O(n)
-        // space=O(1) or O(256) to be precise
+
+  if(str.size()==0)
+      return 0;
+  int maxans = INT_MIN;
+  unordered_map < int,int > mp;
+  int l = 0;
+  for (int r = 0; r < str.length(); r++) // outer loop for traversing the string
+  {
+     mp[str[r]]++; 
+      
+      
+    if (mp[str[r]]>1) //if duplicate element is found
+    {
+      while (l < r && mp[str[r]]>1) {
+         mp[str[l]]--; 
         
-        //sliding window approach
-        
-        map<char,int>m;
-        
-        int left=0;
-        int right=0;
-        int n=s.size();
-        int len=0;
-        
-        while(right<n){
-            
-            if(m.find(s[right])!=m.end()){   //if it already exist in our substring
-                
-                left=max(m[s[right]]+1,left);   //left will point to next index of where element at right prexist
-            }
-            
-            m[s[right]]=right;   //store in map where element at right last found
-            
-            len=max(len,right-left+1);   //find length of substring b/w left and right
-            right++;
-        }
-        
-        return len;
-        
+          if(mp[str[l]]==0){
+              mp.erase(str[l]);
+          }
+        l++;
+      }
+    }
+    
+    maxans = max(maxans, r - l + 1);
+  }
+  return maxans;
         
         
         
