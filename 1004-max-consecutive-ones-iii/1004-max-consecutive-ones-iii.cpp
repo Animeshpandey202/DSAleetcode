@@ -8,7 +8,7 @@ public:
             
             
             //accuire till zero<=k || s[j]=1
-            if(j<n && (s[j]==1 || zeros<=k)){
+            if(s[j]==1 || zeros<=k){
                 
                 if(s[j]==0)zeros++;
             } 
