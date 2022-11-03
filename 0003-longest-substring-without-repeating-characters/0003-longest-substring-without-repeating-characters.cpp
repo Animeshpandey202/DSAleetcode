@@ -18,9 +18,7 @@ public:
       while (l < r && mp[str[r]]>1) {
          mp[str[l]]--; 
         
-          if(mp[str[l]]==0){
-              mp.erase(str[l]);
-          }
+         
         l++;
       }
     }
