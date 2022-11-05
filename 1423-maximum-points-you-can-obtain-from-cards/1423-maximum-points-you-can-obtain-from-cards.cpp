@@ -7,10 +7,13 @@ public:
         int total=0;
         for(int i=0;i<s.size();i++){
             total+=s[i];
+            if(i<m){
+                sum+=s[i];
+            }
+            
         }
-        for(int i=0;i<m;i++){
-            sum+=s[i];
-        }
+        
+        
         
         mini=min(mini,sum);
         
