@@ -1,7 +1,7 @@
 class Solution {
 public:
 	bool isNStraightHand(vector<int>& nums, int k) 
-	{
+	{   if(nums.size()%k!=0)return false;
 		map<int,int> mp;
 		for(int i=0;i<nums.size();i++)
 		{
@@ -10,7 +10,7 @@ public:
 
 		while(mp.size()>0)
 		{
-			auto first=mp.begin()->first;
+			int first=mp.begin()->first;
 				for(int i=0;i<k;i++)
 				{
 					if(mp[first+i]>0)
