@@ -1,9 +1,4 @@
-class cmp{
-    public:
-    bool operator()(pair<int,int>a,pair<int,int>b){
-        return a.second>b.second;
-    }
-};
+
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& arr, int k) {
@@ -13,10 +8,10 @@ public:
             mp[it]++;
         }
         
-        priority_queue<pair<int,int>,vector<pair<int,int>>,cmp>pq;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         
         for(auto it:mp){
-            pq.push({it.first,it.second});
+            pq.push({it.second,it.first});
             
             if(pq.size()>k){
                 pq.pop();
@@ -24,7 +19,7 @@ public:
         }
         vector<int>ans;
         while(!pq.empty()){
-            ans.push_back(pq.top().first);
+            ans.push_back(pq.top().second);
             pq.pop();
         }
         return ans;
