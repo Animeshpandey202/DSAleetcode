@@ -5,11 +5,11 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution{
-    // typedef long long ll;
+    typedef long long ll;
     private:
     long long KthSmallest(long long v[], long long k, long long n)
 {
-    priority_queue<long long> maxHeap;
+    priority_queue<ll> maxHeap;
     for (long i = 0; i <n; i++)
     {
         maxHeap.push(v[i]);
