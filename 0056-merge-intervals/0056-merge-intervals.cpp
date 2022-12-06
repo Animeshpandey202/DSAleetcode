@@ -9,7 +9,7 @@ public:
             
             //if overlap merge
             if(temp[1]>=it[0]){
-                temp[0]=min(it[0],temp[0]);
+               
                 temp[1]=max(it[1],temp[1]);
             }
             else{
