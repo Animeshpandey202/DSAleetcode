@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>>ans;
+        sort(intervals.begin(),intervals.end());
+        auto temp=intervals[0];
+        
+        for(auto it: intervals){
+            
+            //if overlap merge
+            if(temp[1]>=it[0]){
+                temp[0]=min(it[0],temp[0]);
+                temp[1]=max(it[1],temp[1]);
+            }
+            else{
+                ans.push_back(temp);
+                temp=it;
+            }
+        }
+        ans.push_back(temp);
+        return ans;
+    }
+};
