@@ -12,39 +12,29 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        
- //morris traversal  tc=O(n) space=O(1)
+        stack<TreeNode*>st;
         vector<int>ans;
-         TreeNode* cur=root;
-         while(cur!=NULL){
+        TreeNode* cur=root;  // inorder: left node right
         
-       
-        
-            if(cur->left==NULL){
-                ans.push_back(cur->val);
-                cur=cur->right;
-                }
-            else{
+        while(!st.empty() || cur!=NULL){
             
-                TreeNode *pred=cur->left;
-                while(pred->right!=NULL && pred->right!=cur){
-                    pred=pred->right;
-                        }
-            
-                if(pred->right==NULL){
-                pred->right=cur;
+            //goto extreme left until cur becomes null
+            while(cur!=NULL){
+                st.push(cur);
                 cur=cur->left;
-                }
-                
-                else{
-                pred->right=NULL;
-                ans.push_back(cur->val);        //for preorder move this line after  line 33..ie pred->right=cur
-                cur=cur->right;
-                
-                }
             }
-         }
-        return ans;
+            
+            //now by this time cur is null nad node is pointed by st.top
+            cur=st.top();
+            st.pop();
+            ans.push_back(cur->val);
+            
+            //now we have to traverse cur rght
+            cur=cur->right;
+            
+            
+        }
+     return ans;
     }
 };
 
@@ -56,32 +46,37 @@ public:
             
 
 
-//iterative inorder tc=O(n) sc-O(n)
-//        vector<int>ans;
-//         stack<TreeNode *>st;
-//         TreeNode *node=root;
+//morris traversal  tc=O(n) space=O(1)
+//         vector<int>ans;
+//          TreeNode* cur=root;
+//          while(cur!=NULL){
         
-//         while(true){
-            
-//             if(node!=NULL){
-//                 st.push(node);
-//                 node=node->left;           
-
-//             }
+       
+        
+//             if(cur->left==NULL){
+//                 ans.push_back(cur->val);
+//                 cur=cur->right;
+//                 }
 //             else{
-                
-//                 if(st.empty()==true)break;
-                
-//                 node=st.top();
-//                 st.pop();
-//                 ans.push_back(node->val);
-//                 node=node->right;
-                
-                
-//             }  
             
-//         }
-        
+//                 TreeNode *pred=cur->left;
+//                 while(pred->right!=NULL && pred->right!=cur){
+//                     pred=pred->right;
+//                         }
+            
+//                 if(pred->right==NULL){
+//                 pred->right=cur;
+//                 cur=cur->left;
+//                 }
+                
+//                 else{
+//                 pred->right=NULL;
+//                 ans.push_back(cur->val);        //for preorder move this line after  line 33..ie pred->right=cur
+//                 cur=cur->right;
+                
+//                 }
+//             }
+//          }
 //         return ans;
 
 
