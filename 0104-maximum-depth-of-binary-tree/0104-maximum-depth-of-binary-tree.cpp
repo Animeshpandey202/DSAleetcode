@@ -17,11 +17,11 @@ public:
             return 0;
         }
         
-        int lheight=maxDepth(root->left);
+        int lheight=1+maxDepth(root->left);
         
-        int rheight=maxDepth(root->right);
+        int rheight=1+maxDepth(root->right);
         
-        return 1+max(lheight,rheight);
+        return max(lheight,rheight);
         
         
         
