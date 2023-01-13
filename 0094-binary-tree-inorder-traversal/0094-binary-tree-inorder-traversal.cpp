@@ -62,7 +62,7 @@ public:
 //                 TreeNode *pred=cur->left;
 //                 while(pred->right!=NULL && pred->right!=cur){
 //                     pred=pred->right;
-//                         }
+//                 }
             
 //                 if(pred->right==NULL){
 //                 pred->right=cur;
