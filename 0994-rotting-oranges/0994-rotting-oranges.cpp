@@ -53,6 +53,7 @@ public:
                         temp=1;
                         grid[x][y] = 2;
                         q.push({x, y});
+                        fresh--;
                     }
                 }
                 
@@ -65,18 +66,12 @@ public:
         
         
         // we checked if any fresh oranges are still there
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(grid[i][j] == 1){
-                    time = 0;
-                    break;
-                }
-            }
-        }
+      
+        if(fresh!=0)return -1;
+        return time;
         
         
-        
-        return (time == 0) ? -1 : time ;
+         
         
     }
 };
