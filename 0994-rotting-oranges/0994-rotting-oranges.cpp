@@ -42,17 +42,17 @@ public:
                 int x1 = p.first;
                 int y1 = p.second;
                 
-                int ax[4] = { 1, -1, 0, 0};
-                int ay[4] = { 0, 0 , 1 , -1};
+                int dx[4] = { 1, -1, 0, 0};
+                int dy[4] = { 0, 0 , 1 , -1};
                 
                 for(int i=0; i<4; i++){
-                    int x = ax[i] + x1;
-                    int y = ay[i] + y1;
+                    int nx = dx[i] + x1;
+                    int ny = dy[i] + y1;
                     
-                    if(isValid(x, y, n, m, grid)){
+                    if(isValid(nx, ny, n, m, grid)){
                         temp=1;
-                        grid[x][y] = 2;
-                        q.push({x, y});
+                        grid[nx][ny] = 2;
+                        q.push({nx, ny});
                         fresh--;
                     }
                 }
