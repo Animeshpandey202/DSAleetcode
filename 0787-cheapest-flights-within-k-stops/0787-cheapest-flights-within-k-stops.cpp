@@ -1,26 +1,59 @@
 class Solution { // similar to network delay time.  dijkstra algo
 public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
-        unordered_map<int, vector<pair<int, int>>> graph;
-        for(auto e: flights) graph[e[0]].push_back({e[1], e[2]});
-        vector<int> prices(n, -1);
-        queue<pair<int, int>> q; q.push({src, 0});
-        ++K;
-        while(!q.empty()) {
-            if(!K) break;
-            int len = q.size();
-            for(int i = 0; i < len; i++) {
-                auto cur = q.front(); q.pop();
-                for(auto e: graph[cur.first]) {
-                    int price = cur.second + e.second; 
-                    if(prices[e.first] == -1 || price < prices[e.first]) {
-                        prices[e.first] = price;
-                        q.push({e.first, price});
-                    }
+    
+ int findCheapestPrice(int n, vector<vector<int>> &flights,int src, int dst, int K)
+    {
+        // Create the adjacency list to depict airports and flights in
+        // the form of a graph.
+        vector<pair<int, int>> adj[n];
+        for (auto it : flights)
+        {
+            adj[it[0]].push_back({it[1], it[2]});
+        }
+
+        // Create a queue which stores the node and their distances from the
+        // source in the form of {stops, {node, dist}} with ‘stops’ indicating 
+        // the no. of nodes between src and current node.
+        queue<pair<int, pair<int, int>>> q;
+        //q{src,{stop,dist}}
+        q.push({src, {0, 0}});
+
+        // Distance array to store the updated distances from the source.
+        vector<int> dist(n, 1e9);
+        dist[src] = 0;
+
+        // Iterate through the graph using a queue like in Dijkstra with 
+        // popping out the element with min stops first.
+        while (!q.empty())
+        {
+            auto it = q.front();
+            q.pop();
+            int stops = it.second.first;
+            int node = it.first;
+            int cost = it.second.second;
+
+            // We stop the process as soon as the limit for the stops reaches.
+            if (stops > K)
+                continue;
+            for (auto iter : adj[node])
+            {
+                int adjNode = iter.first;
+                int edW = iter.second;
+
+                // We only update the queue if the new calculated dist is
+                // less than the prev and the stops are also within limits.
+                if (cost + edW < dist[adjNode] && stops <= K)
+                {
+                    dist[adjNode] = cost + edW;
+                    q.push({adjNode,{stops+1, cost + edW}});
                 }
             }
-            K--;
         }
-        return prices[dst];
+        // If the destination node is unreachable return ‘-1’
+        // else return the calculated dist from src to dst.
+        if (dist[dst] == 1e9)
+            return -1;
+        return dist[dst];
     }
+    
 };
