@@ -1,6 +1,6 @@
 class Solution {
 private:
-    void dfs(int node,int parent,vector<int>&disc,vector<int>&low,int timer,vector<bool>&vis,vector<int>adj[],vector<vector<int>>&result){
+    void dfs(int node,int parent,vector<int>&disc,vector<int>&low,int &timer,vector<bool>&vis,vector<int>adj[],vector<vector<int>>&result){
     vis[node]=true;
     disc[node]=low[node]=timer++;
     
