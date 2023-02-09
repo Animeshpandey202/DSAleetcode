@@ -26,7 +26,7 @@ private:
         else{
             //nbr is already visited and not parent
             //back edge
-            low[node]=min(low[node],disc[nbr]);
+            low[node]=min(low[node],low[nbr]);
         }
     }
 }
