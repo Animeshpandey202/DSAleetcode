@@ -15,7 +15,7 @@ class Solution {
         
           for (int day = 1; day < n; day++) {
             for (int last = 0; last < 4; last++) {
-              dp[day][last] = 0;
+              
               for (int task = 0; task <= 2; task++) {
                 if (task != last) {
                   int activity = points[day][task] + dp[day - 1][task];
