@@ -3,21 +3,23 @@ class Solution {
      int f(vector<int> a) {
        
         int n=a.size();
-        
-        vector<int>dp(n,-1);
-        dp[0]=a[0];    
-        
+        int prev=a[0];
+         int prev2=0;
+         
+           
         for(int i=1;i<n;i++){  // 0 1 2
             
             int pick=a[i];
-            if(i>1)pick+=dp[i-2] ;
+            if(i>1)pick+=prev2;
         
-            int notpick=0+dp[i-1] ;
+            int notpick=0+prev;
 
-           dp[i]=max(pick,notpick);
+           int curi=max(pick,notpick);
+              prev2=prev;
+            prev=curi;
         }
          
-         return dp[n-1];
+         return prev;
     }
 public:
     int rob(vector<int>& nums) {
@@ -36,25 +38,4 @@ public:
         return max(f(leaveone),f(leavelast));
     }
 };
-// class Solution {
-// public:
-//     int houseRobber(vector<int>& nums) {
-//         // dynamic programming - decide each problem by its sub-problems:
-        
-        
-//         int dp[nums.size()+1];
-//         dp[0] = nums[0];
-//         dp[1] = max(nums[0], nums[1]);
-//         for (int i=2; i<nums.size(); i++)
-//             dp[i] = max(dp[i-1], nums[i]+dp[i-2]);
-//         return dp[nums.size()-1];
-//     }
-    
-//     int rob(vector<int>& nums) {
-        
-//         // either use first house and can't use last or last and not first:
-//         vector<int> v1(nums.begin(), nums.end()-1);
-//         vector<int> v2(nums.begin()+1, nums.end());
-//         return max(houseRobber(v1), houseRobber(v2));
-//     }
-// };
+ 
