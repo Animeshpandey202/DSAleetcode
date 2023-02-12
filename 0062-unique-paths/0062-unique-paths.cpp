@@ -27,7 +27,7 @@ int countWaysUtil(int m, int n, vector<vector<int> > &dp) {
   
 }
     int uniquePaths(int m, int n) {
-    vector<vector<int> > dp(m,vector<int>(n,-1));
+    vector<vector<int> > dp(m,vector<int>(n,0));
     return countWaysUtil(m,n,dp);
     
 }
