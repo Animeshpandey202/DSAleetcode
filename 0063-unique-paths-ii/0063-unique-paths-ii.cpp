@@ -2,10 +2,11 @@ class Solution {
     // fn tells no of ways to reach from a[0][0] to a[i][j]
     
         int f(int i,int j,vector<vector<int>>&maze,vector<vector<int>>& dp){
-           
-            if(i>=0 && j>=0 && maze[i][j]==1) return 0; 
+           if(i<0 || j<0) return 0;
+            if( maze[i][j]==1) return 0; 
           if(i==0 && j == 0) return 1;
-          if(i<0 || j<0) return 0;
+           
+          
             
           if(dp[i][j]!=-1) return dp[i][j];
 
