@@ -4,7 +4,7 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-int mod =(int)1e9+7;
+int mod = 1e9+7;
 
 int findWays(vector<int> &num, int tar){
      int n = num.size();
