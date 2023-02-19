@@ -10,9 +10,12 @@ public:
             dp[0][i] = i/arr[0];
         else dp[0][i] = 1e9;
     }
+    for(int i=0;i<n;i++){
+        dp[i][0]=0;
+    }
     
     for(int ind = 1; ind<n; ind++){
-        for(int target = 0; target<=T; target++){
+        for(int target = 1; target<=T; target++){
             
             int notTake = 0 + dp[ind-1][target];
             int take = 1e9;
