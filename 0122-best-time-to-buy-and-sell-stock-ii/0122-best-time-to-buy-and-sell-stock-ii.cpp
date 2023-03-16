@@ -24,6 +24,6 @@ public:
         
         ahead = cur;
     }
-    return cur[0];
+    return ahead[0];
     }
 };
