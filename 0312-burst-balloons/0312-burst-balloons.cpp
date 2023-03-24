@@ -51,9 +51,10 @@ public:
 
                     maxi=max(maxi,val);
                     
-                    dp[i][j]=maxi; 
+                    
 
                 }
+                 dp[i][j]=maxi;
                    
             }
         }
