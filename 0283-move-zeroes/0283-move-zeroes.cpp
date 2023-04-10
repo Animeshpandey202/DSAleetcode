@@ -15,7 +15,7 @@ public:
   //finding zeros and immediate non-zero elements and swapping them
   int i = k, j = k + 1;
 
-  while (i < n && j < n) {
+  while ( j < n) {
     if (arr[j] != 0) {
       int temp = arr[i];
       arr[i] = arr[j];
