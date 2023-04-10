@@ -13,9 +13,9 @@ public:
   }
 
   //finding zeros and immediate non-zero elements and swapping them
-  int i = k, j = k + 1;
+  int i = k;
 
-  while ( j < n) {
+  for(int j=k+1;j<n;j++) {
     if (arr[j] != 0) {
       int temp = arr[i];
       arr[i] = arr[j];
@@ -23,8 +23,6 @@ public:
       i++;
 
     }
-
-    j++;
 
   }
         
