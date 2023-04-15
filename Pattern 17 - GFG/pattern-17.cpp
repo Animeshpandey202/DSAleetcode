@@ -16,12 +16,12 @@ class Solution {
           
           // for printing the characters.
           char ch = 'A';
-          int breakpoint = (2*i+1)/2;
-          for(int j=1;j<=2*i+1;j++){
+        //   int breakpoint = (2*i+1)/2;
+          for(int j=0;j<2*i+1;j++){
               
               cout<<ch;
-              if(j <= breakpoint) ch++;
-              else ch--;
+              if(j >= i) ch--;
+              else ch++;
           }
           
           // for printing the spaces again after characters.
